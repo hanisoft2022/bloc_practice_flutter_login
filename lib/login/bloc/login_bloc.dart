@@ -9,6 +9,8 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  final AuthenticationRepository _authenticationRepository;
+
   LoginBloc({required AuthenticationRepository authenticationRepository})
     : _authenticationRepository = authenticationRepository,
       super(const LoginState()) {
@@ -16,8 +18,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<LoginPasswordChanged>(_onPasswordChanged);
     on<LoginSubmitted>(_onSubmitted);
   }
-
-  final AuthenticationRepository _authenticationRepository;
 
   void _onUsernameChanged(LoginUsernameChanged event, Emitter<LoginState> emit) {
     final username = Username.dirty(event.username);
