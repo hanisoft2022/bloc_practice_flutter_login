@@ -9,6 +9,9 @@ part 'authentication_event.dart';
 part 'authentication_state.dart';
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
+  final AuthenticationRepository _authenticationRepository;
+  final UserRepository _userRepository;
+
   AuthenticationBloc({
     required AuthenticationRepository authenticationRepository,
     required UserRepository userRepository,
@@ -18,9 +21,6 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<AuthenticationSubscriptionRequested>(_onSubscriptionRequested);
     on<AuthenticationLogoutPressed>(_onLogoutPressed);
   }
-
-  final AuthenticationRepository _authenticationRepository;
-  final UserRepository _userRepository;
 
   Future<void> _onSubscriptionRequested(
     AuthenticationSubscriptionRequested event,
