@@ -19,6 +19,17 @@ class HomePage extends StatelessWidget {
   }
 }
 
+class _UserId extends StatelessWidget {
+  const _UserId();
+
+  @override
+  Widget build(BuildContext context) {
+    final userId = context.select((AuthenticationBloc bloc) => bloc.state.user.id);
+
+    return Text('UserID: $userId');
+  }
+}
+
 class _LogoutButton extends StatelessWidget {
   const _LogoutButton();
 
@@ -30,16 +41,5 @@ class _LogoutButton extends StatelessWidget {
         context.read<AuthenticationBloc>().add(AuthenticationLogoutPressed());
       },
     );
-  }
-}
-
-class _UserId extends StatelessWidget {
-  const _UserId();
-
-  @override
-  Widget build(BuildContext context) {
-    final userId = context.select((AuthenticationBloc bloc) => bloc.state.user.id);
-
-    return Text('UserID: $userId');
   }
 }
